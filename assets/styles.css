@@ -72,3 +72,15 @@
  .wordmark .brand-dot{font-size:12px}
  .wordmark .brand-descriptor{font-size:7px;letter-spacing:.3px}
 }
+
+/* Acciones compactas de cabecera: idioma e Instagram */
+.header-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-shrink:0}
+.instagram-button{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:50%;color:var(--ink);text-decoration:none;flex-shrink:0;transition:color .2s,border-color .2s,background .2s}
+.instagram-button svg{width:16px;height:16px;display:block}
+.instagram-button:hover,.instagram-button:focus-visible{color:var(--red);border-color:var(--red)}
+.instagram-button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+@media(max-width:760px){
+ .header-actions{gap:6px}
+ .instagram-button{width:30px;height:30px}
+ .instagram-button svg{width:15px;height:15px}
+}
