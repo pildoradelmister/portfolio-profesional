@@ -84,3 +84,16 @@
  .instagram-button{width:30px;height:30px}
  .instagram-button svg{width:15px;height:15px}
 }
+
+/* Marca y enlaces del pie de página */
+.footer-mark{display:flex;align-items:baseline;gap:7px;white-space:nowrap;text-decoration:none}
+.footer-brand-name{font-family:var(--display);font-size:14px;font-weight:800;letter-spacing:-.3px;color:var(--ink)}
+.footer-brand-separator{font-family:var(--display);font-size:13px;font-weight:500;color:var(--red)}
+.footer-brand-descriptor{font-family:var(--mono);font-size:8px;letter-spacing:.55px;font-weight:500;color:var(--muted)}
+.footer-actions{display:flex;align-items:center;gap:16px}
+@media(max-width:760px){
+ .footer-mark{gap:5px}
+ .footer-brand-name{font-size:12px}
+ .footer-brand-descriptor{font-size:7px;letter-spacing:.2px}
+ .footer-actions{gap:12px}
+}
