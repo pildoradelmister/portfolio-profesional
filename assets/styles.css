@@ -91,9 +91,11 @@
 .footer-brand-separator{font-family:var(--display);font-size:13px;font-weight:500;color:var(--red)}
 .footer-mark .footer-brand-descriptor{font-family:var(--mono);font-size:8px;letter-spacing:.55px;font-weight:500;color:var(--ink)}
 .footer-actions{display:flex;align-items:center;gap:16px}
+.footer-actions>a:last-child{font-size:9px;font-weight:600;color:#777873;white-space:nowrap}
 @media(max-width:760px){
  .footer-mark{gap:5px}
  .footer-brand-name{font-size:12px}
  .footer-brand-descriptor{font-size:7px;letter-spacing:.2px}
- .footer-actions{gap:12px}
+ .footer-actions{gap:8px}
+ .footer-actions>a:last-child{font-size:8px}
 }
