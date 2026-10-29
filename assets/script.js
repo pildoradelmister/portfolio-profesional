@@ -22,6 +22,7 @@ let currentLanguage = "es";
 const languageButton = document.querySelector("#language-toggle");
 function setLanguage(language) {
   currentLanguage = translations[language] ? language : "es";
+  try { localStorage.setItem("portfolio-language", currentLanguage); } catch (error) { /* La web sigue funcionando si el almacenamiento está bloqueado. */ }
   document.documentElement.lang = currentLanguage;
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const key = element.dataset.i18n;
@@ -36,5 +37,9 @@ function setLanguage(language) {
 if (languageButton) {
   languageButton.addEventListener("click", () => setLanguage(currentLanguage === "es" ? "en" : "es"));
 }
+try {
+  const savedLanguage = localStorage.getItem("portfolio-language");
+  if (savedLanguage && translations[savedLanguage]) setLanguage(savedLanguage);
+} catch (error) { /* Idioma predeterminado: español. */ }
 const yearElement = document.querySelector("#year");
 if (yearElement) yearElement.textContent = String(new Date().getFullYear());
