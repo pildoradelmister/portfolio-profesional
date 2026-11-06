@@ -34,21 +34,133 @@
         <h2 data-i18n="caseStructureTitle">Pregunta. Método. Resultado. Interpretación.</h2>
         <p data-i18n="caseStructureText">Cada análisis incluirá el contexto de los datos, el procedimiento utilizado, la visualización final y una lectura futbolística de los resultados, junto con las limitaciones relevantes.</p>
       </div>
-      <div class="analysis-cases">
-        <article class="analysis-case">
-          <div class="case-index">01</div><div class="case-body"><p class="case-type">SPATIAL ANALYSIS</p><h2 data-i18n="caseHeatTitle">Mapa de calor individual</h2><p data-i18n="caseHeatText">Explorar dónde se concentran las intervenciones de un jugador y cómo se distribuyen espacialmente sus acciones.</p><div class="case-question"><strong data-i18n="questionLabel">Pregunta de análisis</strong><span data-i18n="caseHeatQuestion">¿En qué zonas participa con mayor frecuencia el jugador seleccionado?</span></div><span class="case-status" data-i18n="pendingStatus">Caso en preparación</span></div>
-        </article>
-        <article class="analysis-case">
-          <div class="case-index">02</div><div class="case-body"><p class="case-type">PASSING ANALYSIS</p><h2 data-i18n="casePassTitle">Pases y progresión</h2><p data-i18n="casePassText">Analizar la dirección, la longitud y el avance de los pases para describir patrones de circulación.</p><div class="case-question"><strong data-i18n="questionLabel">Pregunta de análisis</strong><span data-i18n="casePassQuestion">¿Qué volumen de pases consigue progresar y desde qué zonas se generan?</span></div><span class="case-status" data-i18n="pendingStatus">Caso en preparación</span></div>
-        </article>
-        <article class="analysis-case">
-          <div class="case-index">03</div><div class="case-body"><p class="case-type">EXPECTED GOALS</p><h2 data-i18n="caseXgTitle">xG acumulado y por tramos</h2><p data-i18n="caseXgText">Comparar la evolución del peligro generado durante el partido y su distribución temporal.</p><div class="case-question"><strong data-i18n="questionLabel">Pregunta de análisis</strong><span data-i18n="caseXgQuestion">¿En qué periodos genera cada equipo más peligro según el xG de sus ocasiones?</span></div><span class="case-status" data-i18n="pendingStatus">Caso en preparación</span></div>
-        </article>
-        <article class="analysis-case">
-          <div class="case-index">04</div><div class="case-body"><p class="case-type">PLAYER PROFILING</p><h2 data-i18n="caseRadarTitle">Radar comparativo por demarcación</h2><p data-i18n="caseRadarText">Comparar perfiles de jugadores con métricas seleccionadas y criterios explícitos de normalización.</p><div class="case-question"><strong data-i18n="questionLabel">Pregunta de análisis</strong><span data-i18n="caseRadarQuestion">¿Cómo se diferencian los perfiles de jugadores que comparten una demarcación?</span></div><span class="case-status" data-i18n="pendingStatus">Caso en preparación</span></div>
-        </article>
+      <div class="project-accordions">
+        <details class="project-accordion" open>
+          <summary>
+            <span class="case-index">04</span>
+            <span class="project-summary-copy"><span class="case-type">PLAYER PROFILING · STATSBOMB OPEN DATA · PYTHON</span><strong data-i18n="caseRadarTitle">Radar comparativo por demarcación</strong><small data-i18n="radarSummary">Plantilla reproducible para comparar perfiles estadísticos dentro de una referencia posicional.</small></span>
+            <span class="accordion-indicator" aria-hidden="true">+</span>
+          </summary>
+          <div class="project-accordion-content">
+            <div class="nested-accordions">
+              <details class="nested-accordion" open>
+                <summary data-i18n="radarObjectiveTitle">01 · Objetivo y pregunta de análisis</summary>
+                <div class="nested-content">
+                  <p data-i18n="radarObjectiveText">Construir una plantilla reproducible para comparar el perfil estadístico de un futbolista con una muestra de referencia definida por demarcación y competición.</p>
+                  <div class="case-question"><strong data-i18n="questionLabel">Pregunta de análisis</strong><span data-i18n="radarQuestionFull">¿En qué dimensiones del juego destaca o se diferencia un futbolista respecto a jugadores de una referencia posicional comparable?</span></div>
+                </div>
+              </details>
+              <details class="nested-accordion">
+                <summary data-i18n="radarContextTitle">02 · Contexto y muestra</summary>
+                <div class="nested-content">
+                  <p data-i18n="radarContextText">Ejemplo de aplicación: Jude Bellingham con Inglaterra en la Eurocopa 2024. Se analizaron 550,88 minutos dentro de la familia posicional Attacking Midfielder. La cohorte quedó formada por 16 futbolistas con un mínimo de 180 minutos.</p>
+                  <p class="method-note" data-i18n="radarContextNote">Los percentiles son relativos a esta cohorte y a estos criterios de selección; no constituyen una clasificación universal de mediapuntas.</p>
+                </div>
+              </details>
+              <details class="nested-accordion">
+                <summary data-i18n="radarVariablesTitle">03 · Variables e indicadores</summary>
+                <div class="nested-content">
+                  <p data-i18n="radarVariablesText">El radar reúne 12 indicadores agrupados en producción ofensiva, creación y progresión, y actividad defensiva.</p>
+                  <ul class="indicator-list">
+                    <li><strong data-i18n="radarGroupAttack">Producción ofensiva:</strong> <span data-i18n="radarIndicatorsAttack">goles, xG y disparos.</span></li>
+                    <li><strong data-i18n="radarGroupCreation">Creación y progresión:</strong> <span data-i18n="radarIndicatorsCreation">asistencias, pases clave, pases progresivos, conducciones progresivas y regates completados.</span></li>
+                    <li><strong data-i18n="radarGroupDefense">Actividad defensiva:</strong> <span data-i18n="radarIndicatorsDefense">presiones, recuperaciones, intercepciones exitosas y entradas exitosas.</span></li>
+                  </ul>
+                  <p class="method-note" data-i18n="radarVariablesNote">Se combinan conteos y tasas por 90 minutos. Los percentiles se calculan sobre las tasas por 90 de la muestra seleccionada.</p>
+                </div>
+              </details>
+              <details class="nested-accordion">
+                <summary data-i18n="radarMethodTitle">04 · Metodología y procedimiento</summary>
+                <div class="nested-content">
+                  <ol>
+                    <li data-i18n="radarMethod1">Procesamiento de datos de eventos con Python y Jupyter.</li>
+                    <li data-i18n="radarMethod2">Reconstrucción y control de la información temporal y posicional utilizada.</li>
+                    <li data-i18n="radarMethod3">Cálculo de 12 indicadores, conteos y tasas por 90 minutos.</li>
+                    <li data-i18n="radarMethod4">Transformación de las tasas en percentiles relativos a la cohorte configurada.</li>
+                    <li data-i18n="radarMethod5">Representación en un radar por bloques, con una línea visual fija P50.</li>
+                  </ol>
+                </div>
+              </details>
+              <details class="nested-accordion">
+                <summary data-i18n="radarValidationTitle">05 · Validación técnica</summary>
+                <div class="nested-content">
+                  <p data-i18n="radarValidationText">El desarrollo se cerró con tres notebooks diferenciados: plantilla funcional integrada, pruebas de reutilización y auditoría integral. Se revisaron la reconstrucción temporal y posicional, los indicadores, las tasas por 90, los percentiles y la coherencia entre cálculos y visualización.</p>
+                  <p class="method-note" data-i18n="radarValidationScenarios">Las pruebas de reutilización cubrieron tres escenarios con distintas referencias posicionales y competitivas.</p>
+                </div>
+              </details>
+              <details class="nested-accordion">
+                <summary data-i18n="radarResultsTitle">06 · Resultado del ejemplo</summary>
+                <div class="nested-content">
+                  <p data-i18n="radarResultsIntro">Percentiles de Bellingham en la cohorte analizada:</p>
+                  <div class="radar-results-grid">
+                    <div><span data-i18n="metricGoals">Goles</span><strong>33,3</strong></div>
+                    <div><span>xG</span><strong>6,7</strong></div>
+                    <div><span data-i18n="metricShots">Disparos</span><strong>0,0</strong></div>
+                    <div><span data-i18n="metricAssists">Asistencias</span><strong>26,7</strong></div>
+                    <div><span data-i18n="metricKeyPasses">Pases clave</span><strong>20,0</strong></div>
+                    <div><span data-i18n="metricProgressivePasses">Pases progresivos</span><strong>60,0</strong></div>
+                    <div><span data-i18n="metricProgressiveCarries">Conducciones progresivas</span><strong>80,0</strong></div>
+                    <div><span data-i18n="metricSuccessfulDribbles">Regates completados</span><strong>86,7</strong></div>
+                    <div><span data-i18n="metricPressures">Presiones</span><strong>66,7</strong></div>
+                    <div><span data-i18n="metricRecoveries">Recuperaciones</span><strong>66,7</strong></div>
+                    <div><span data-i18n="metricInterceptions">Intercepciones exitosas</span><strong>86,7</strong></div>
+                    <div><span data-i18n="metricTackles">Entradas exitosas</span><strong>73,3</strong></div>
+                  </div>
+                  <figure class="radar-figure">
+                    <img src="assets/images/BD-001_radar_comparativo_bellingham_eurocopa2024.png" alt="Radar comparativo del perfil estadístico de Jude Bellingham en la Eurocopa 2024, basado en datos de StatsBomb Open Data." data-i18n-alt="radarChartAlt">
+                    <figcaption><span data-i18n="radarChartCaption">Ejemplo: Jude Bellingham · Eurocopa 2024 · Fuente: StatsBomb Open Data</span><img src="assets/images/statsbomb-logo.svg" alt="StatsBomb" class="statsbomb-logo"></figcaption>
+                  </figure>
+                  <p class="method-note" data-i18n="radarP50Note">La línea P50 del radar es una referencia fija en 50; no representa la media ni la mediana de la cohorte.</p>
+                </div>
+              </details>
+              <details class="nested-accordion">
+                <summary data-i18n="radarInterpretationTitle">07 · Interpretación futbolística</summary>
+                <div class="nested-content">
+                  <p data-i18n="radarInterpretationIntro">En esta muestra, el perfil presenta mayor presencia relativa en la progresión individual y en varias acciones defensivas que en el remate y la creación directa mediante pase.</p>
+                  <ul>
+                    <li data-i18n="radarInterpretation1">Remate: disparos (P0), xG (P6,7) y goles (P33,3) se sitúan en la parte baja de la cohorte.</li>
+                    <li data-i18n="radarInterpretation2">Creación: asistencias (P26,7) y pases clave (P20) quedan por debajo del punto medio; los pases progresivos alcanzan P60.</li>
+                    <li data-i18n="radarInterpretation3">Progresión individual: conducciones progresivas (P80) y regates completados (P86,7) son dos de los valores más altos.</li>
+                    <li data-i18n="radarInterpretation4">Actividad defensiva: presiones y recuperaciones (P66,7), intercepciones (P86,7) y entradas exitosas (P73,3) muestran valores relativamente altos.</li>
+                  </ul>
+                  <p data-i18n="radarInterpretationConclusion">La lectura sugiere un perfil con capacidad para conducir, superar rivales y participar en acciones defensivas, mientras que su volumen de finalización y de generación directa de ocasiones queda por debajo de buena parte de los mediapuntas comparados.</p>
+                  <p class="method-note" data-i18n="radarInterpretationCaveat">Es una descripción estadística, no una explicación del rol táctico ni de la influencia global del jugador. Para profundizar se necesita contrastar los datos con vídeo y contexto de partido.</p>
+                </div>
+              </details>
+              <details class="nested-accordion">
+                <summary data-i18n="radarLimitationsTitle">08 · Limitaciones y criterios de lectura</summary>
+                <div class="nested-content">
+                  <ul>
+                    <li data-i18n="radarLimitation1">La cohorte contiene 16 jugadores y exige un mínimo de 180 minutos; cambiar la muestra puede modificar los percentiles.</li>
+                    <li data-i18n="radarLimitation2">Percentil 0 en disparos no significa ausencia de disparos: Bellingham registró 2 en 550,88 minutos.</li>
+                    <li data-i18n="radarLimitation3">Las recuperaciones contabilizan Ball Recovery sin recovery_failure = True; no equivalen necesariamente a posesión controlada.</li>
+                    <li data-i18n="radarLimitation4">La progresión se define por avance positivo en X de StatsBomb y no corrige la dirección de ataque por equipo.</li>
+                    <li data-i18n="radarLimitation5">Los eventos no explican por sí solos la intención táctica, la calidad de la decisión ni las instrucciones del jugador.</li>
+                  </ul>
+                </div>
+              </details>
+              <details class="nested-accordion">
+                <summary data-i18n="radarResourcesTitle">09 · Recursos técnicos y fuente</summary>
+                <div class="nested-content">
+                  <p data-i18n="radarResourcesText">El proyecto dispone de tres notebooks maestros para ejecución, pruebas de reutilización y auditoría. Se mantienen en el repositorio técnico privado para preservar los archivos de trabajo y evitar duplicidades.</p>
+                  <p><strong data-i18n="radarSourceLabel">Fuente de datos:</strong> StatsBomb Open Data.</p>
+                  <p class="method-note" data-i18n="radarAttributionNote">Los datos proceden de StatsBomb Open Data. Se muestra su logotipo como atribución de la fuente; consulta los recursos oficiales de StatsBomb para conocer las condiciones vigentes.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </details>
+        <details class="project-accordion">
+          <summary><span class="case-index">01</span><span class="project-summary-copy"><span class="case-type">SPATIAL ANALYSIS</span><strong data-i18n="caseHeatTitle">Mapa de calor individual</strong><small data-i18n="pendingProjectSummary">Caso pendiente de desarrollo y validación.</small></span><span class="accordion-indicator" aria-hidden="true">+</span></summary>
+        </details>
+        <details class="project-accordion">
+          <summary><span class="case-index">02</span><span class="project-summary-copy"><span class="case-type">PASSING ANALYSIS</span><strong data-i18n="casePassTitle">Pases y progresión</strong><small data-i18n="pendingProjectSummary">Caso pendiente de desarrollo y validación.</small></span><span class="accordion-indicator" aria-hidden="true">+</span></summary>
+        </details>
+        <details class="project-accordion">
+          <summary><span class="case-index">03</span><span class="project-summary-copy"><span class="case-type">EXPECTED GOALS</span><strong data-i18n="caseXgTitle">xG acumulado y por tramos</strong><small data-i18n="pendingProjectSummary">Caso pendiente de desarrollo y validación.</small></span><span class="accordion-indicator" aria-hidden="true">+</span></summary>
+        </details>
       </div>
-      <p class="editorial-note" data-i18n="pendingNote">Los elementos anteriores definen la arquitectura editorial; no representan resultados publicados. Los gráficos, fuentes, código y conclusiones se añadirán tras validar cada notebook.</p>
+      <p class="editorial-note" data-i18n="pendingNote">BD-001 ha completado su validación técnica. Su publicación visual queda pendiente de revisar las condiciones de uso y atribución de StatsBomb/Hudl. Los demás casos siguen en preparación.</p>
     </section>
     <section class="data-contact-band"><div class="section-shell"><p class="eyebrow" data-i18n="nextStepLabel">SIGUIENTE PASO</p><h2 data-i18n="nextStepTitle">Del notebook a un caso de estudio claro y reproducible.</h2><p data-i18n="nextStepText">Los análisis se incorporarán progresivamente, priorizando la claridad metodológica y la utilidad futbolística.</p><a class="button button-light" href="index.html#contacto" data-i18n="contactLink">Contacto profesional ↗</a></div></section>
   </main>
