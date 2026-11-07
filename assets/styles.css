@@ -148,3 +148,13 @@
 .radar-figure figcaption{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:10px;line-height:1.5;color:var(--muted)}
 .statsbomb-logo{display:block;width:94px;height:auto;max-height:30px;flex:0 0 auto}
 @media(max-width:600px){.radar-figure{padding:9px}.radar-figure figcaption{align-items:flex-start;font-size:9px}.statsbomb-logo{width:76px}}
+
+/* BD-003: tablas de auditoría responsivas */
+.audit-table-wrap{width:100%;overflow-x:auto;margin:14px 0 20px;border:1px solid var(--line)}
+.audit-table{width:100%;border-collapse:collapse;min-width:520px;background:var(--paper);font-size:11px}
+.audit-table th,.audit-table td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;line-height:1.5}
+.audit-table thead th{font:10px var(--mono);letter-spacing:.25px;color:var(--red);background:#eeece6}
+.audit-table tbody th{font-weight:600;color:var(--ink)}
+.audit-table td{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.audit-table tr:last-child th,.audit-table tr:last-child td{border-bottom:0}
+.audit-table tr th[colspan="4"]{background:#eeece6;color:var(--ink);font:10px var(--mono);letter-spacing:.3px}
