@@ -74,5 +74,16 @@ document.querySelectorAll(".project-accordions, .nested-accordions").forEach((gr
     group.querySelectorAll(selector).forEach((item) => {
       if (item !== opened && item.open) item.open = false;
     });
+
+    // En móvil, recoloca el inicio del desplegable recién abierto bajo la cabecera fija.
+    if (window.matchMedia("(max-width: 760px)").matches) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (opened.isConnected && opened.open) {
+            opened.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+    }
   }, true);
 });

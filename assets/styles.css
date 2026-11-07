@@ -162,3 +162,12 @@
 
 /* Identificador del estudio dentro de cada categoría Big Data. */
 .study-code{display:inline-block;margin-right:10px;color:var(--red);font:10px var(--mono);letter-spacing:.6px;white-space:nowrap;vertical-align:middle}
+
+
+/* En móvil, el inicio de cada acordeón queda visible bajo la cabecera fija al navegar. */
+@media (max-width: 760px) {
+  .project-accordion,
+  .nested-accordion {
+    scroll-margin-top: 104px;
+  }
+}
