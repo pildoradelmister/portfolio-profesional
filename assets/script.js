@@ -47,14 +47,19 @@ const yearElement = document.querySelector("#year");
 if (yearElement) yearElement.textContent = String(new Date().getFullYear());
 
 
-// Acordeones exclusivos por nivel: proyectos entre sí y apartados dentro de cada proyecto.
+// Acordeones exclusivos por nivel, sin cerrar el contenedor padre al abrir un apartado interno.
 document.querySelectorAll(".project-accordions, .nested-accordions").forEach((group) => {
   group.addEventListener("toggle", (event) => {
     const opened = event.target;
-    if (!(opened instanceof HTMLDetailsElement) || !opened.open) return;
-    const selector = opened.classList.contains("project-accordion") ? ":scope > .project-accordion" : ":scope > .nested-accordion";
+    // El evento toggle se propaga: solo debe actuar el grupo que contiene directamente al details abierto.
+    if (!(opened instanceof HTMLDetailsElement) || !opened.open || opened.parentElement !== group) return;
+
+    const selector = opened.classList.contains("project-accordion")
+      ? ":scope > .project-accordion"
+      : ":scope > .nested-accordion";
+
     group.querySelectorAll(selector).forEach((item) => {
-      if (item !== opened) item.open = false;
+      if (item !== opened && item.open) item.open = false;
     });
   }, true);
 });
