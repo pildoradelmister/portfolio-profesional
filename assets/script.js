@@ -93,8 +93,12 @@ function setLanguage(language) {
     const key = element.dataset.i18n;
     const translation = translations[currentLanguage][key];
     if (translation) element.innerHTML = translation;
+  });
+  // También traduce los textos alternativos de imágenes, aunque no tengan data-i18n.
+  document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
     const altKey = element.dataset.i18nAlt;
-    if (altKey && translations[currentLanguage][altKey]) element.setAttribute("alt", translations[currentLanguage][altKey]);
+    const translation = translations[currentLanguage][altKey];
+    if (translation) element.setAttribute("alt", translation);
   });
   if (languageButton) {
     languageButton.textContent = currentLanguage === "es" ? "ES / EN" : "EN / ES";
