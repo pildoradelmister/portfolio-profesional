@@ -171,3 +171,9 @@
     scroll-margin-top: 104px;
   }
 }
+
+
+/* Figuras del análisis BD-004 · Liverpool–Arsenal */
+.data-figure{margin:18px 0 24px;padding:12px;border:1px solid var(--line);background:var(--paper)}
+.data-figure img{display:block;width:100%;height:auto;max-width:980px;margin:0 auto}
+.data-figure figcaption{margin:10px auto 0;max-width:980px;color:var(--muted);font-size:12px;line-height:1.6}
