@@ -231,30 +231,33 @@ const yearElement = document.querySelector("#year");
 if (yearElement) yearElement.textContent = String(new Date().getFullYear());
 
 
-// Acordeones exclusivos por nivel: al abrir uno, se cierran sus hermanos.
-document.querySelectorAll(".project-accordions, .nested-accordions").forEach((group) => {
-  group.addEventListener("toggle", (event) => {
-    const opened = event.target;
-    // El evento toggle se propaga: solo actúa el grupo que contiene directamente al details abierto.
-    if (!(opened instanceof HTMLDetailsElement) || !opened.open || opened.parentElement !== group) return;
+// Acordeones exclusivos: al abrir uno, se cierra cualquier otro
+// que no sea un contenedor ancestro necesario para mostrarlo.
+document.addEventListener("toggle", (event) => {
+  const opened = event.target;
+  if (!(opened instanceof HTMLDetailsElement) || !opened.open) return;
 
-    const selector = opened.classList.contains("project-accordion")
-      ? ":scope > .project-accordion"
-      : ":scope > .nested-accordion";
+  // Conserva únicamente el desplegable seleccionado y sus contenedores padre.
+  const requiredAncestors = new Set();
+  let ancestor = opened.parentElement;
+  while (ancestor) {
+    if (ancestor instanceof HTMLDetailsElement) requiredAncestors.add(ancestor);
+    ancestor = ancestor.parentElement;
+  }
 
-    group.querySelectorAll(selector).forEach((item) => {
-      if (item !== opened && item.open) item.open = false;
-    });
+  document.querySelectorAll("details[open]").forEach((item) => {
+    if (item !== opened && !requiredAncestors.has(item)) item.open = false;
+  });
 
-    // En escritorio y móvil, sitúa el título visible bajo la cabecera fija.
+  // En escritorio y móvil, coloca el desplegable recién abierto al inicio
+  // del área visible, sin que la cabecera fija tape su título.
+  requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (!opened.isConnected || !opened.open) return;
-        const header = document.querySelector(".site-header");
-        const headerHeight = header ? header.getBoundingClientRect().height : 0;
-        const top = window.scrollY + opened.getBoundingClientRect().top - headerHeight - 12;
-        window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
-      });
+      if (!opened.isConnected || !opened.open) return;
+      const header = document.querySelector(".site-header");
+      const headerHeight = header ? header.getBoundingClientRect().height : 0;
+      const top = window.scrollY + opened.getBoundingClientRect().top - headerHeight - 12;
+      window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
     });
-  }, true);
-});
+  });
+}, true);
