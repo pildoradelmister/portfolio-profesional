@@ -231,11 +231,11 @@ const yearElement = document.querySelector("#year");
 if (yearElement) yearElement.textContent = String(new Date().getFullYear());
 
 
-// Acordeones exclusivos por nivel, sin cerrar el contenedor padre al abrir un apartado interno.
+// Acordeones exclusivos por nivel: al abrir uno, se cierran sus hermanos.
 document.querySelectorAll(".project-accordions, .nested-accordions").forEach((group) => {
   group.addEventListener("toggle", (event) => {
     const opened = event.target;
-    // El evento toggle se propaga: solo debe actuar el grupo que contiene directamente al details abierto.
+    // El evento toggle se propaga: solo actúa el grupo que contiene directamente al details abierto.
     if (!(opened instanceof HTMLDetailsElement) || !opened.open || opened.parentElement !== group) return;
 
     const selector = opened.classList.contains("project-accordion")
@@ -246,15 +246,15 @@ document.querySelectorAll(".project-accordions, .nested-accordions").forEach((gr
       if (item !== opened && item.open) item.open = false;
     });
 
-    // En móvil, recoloca el inicio del desplegable recién abierto bajo la cabecera fija.
-    if (window.matchMedia("(max-width: 760px)").matches) {
+    // En escritorio y móvil, sitúa el título visible bajo la cabecera fija.
+    requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          if (opened.isConnected && opened.open) {
-            opened.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        });
+        if (!opened.isConnected || !opened.open) return;
+        const header = document.querySelector(".site-header");
+        const headerHeight = header ? header.getBoundingClientRect().height : 0;
+        const top = window.scrollY + opened.getBoundingClientRect().top - headerHeight - 12;
+        window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
       });
-    }
+    });
   }, true);
 });
