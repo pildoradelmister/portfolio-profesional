@@ -253,13 +253,65 @@
 <details class="nested-accordion"><summary data-i18n="matchLiverpoolArsenalCaseResourcesTitle">08 · Recursos y fuente de datos</summary><div class="nested-content"><p data-i18n="matchLiverpoolArsenalCaseResourcesText">Notebook de auditoría y resultados reproducibles disponibles en el repositorio técnico.</p><p><a href="https://github.com/pildoradelmister/big-data-football-analysis/blob/main/02_MAPAS_DE_CALOR/BD-004_MAPA_CALOR_PASES_PELIGROSOS_AUDITORIA_LIVERPOOL_ARSENAL_15_16.ipynb" target="_blank" rel="noopener noreferrer" data-i18n="matchLiverpoolArsenalCaseNotebookLink">Consultar notebook del caso Liverpool–Arsenal ↗</a></p><p><strong data-i18n="radarSourceLabel">Fuente de datos:</strong> StatsBomb Open Data.</p><p><a href="https://github.com/statsbomb/open-data" target="_blank" rel="noopener noreferrer" data-i18n="networkSourceLink">Consultar repositorio oficial de StatsBomb Open Data ↗</a></p></div></details>
 </div></details>
 
-<details class="nested-accordion"><summary><span class="study-code">BD-002</span><span data-i18n="studyIndividualHeatmapTitle">Marc Cucurella · España–Inglaterra · Eurocopa 2024</span></summary><div class="nested-content">
+<details class="nested-accordion">
+<summary><span class="study-code">BD-002</span><span data-i18n="studyIndividualHeatmapTitle">Marc Cucurella · España–Inglaterra · Eurocopa 2024</span></summary>
+<div class="nested-content">
 <p data-i18n="individualHeatmapSummary">Caso piloto de análisis espacial individual aplicado a Marc Cucurella en la final de la Eurocopa 2024.</p>
-<ul><li><strong>Partido:</strong> España–Inglaterra · 14/07/2024 · MATCH_ID 3943043</li><li><strong>Jugador:</strong> Marc Cucurella Saseta · España (PLAYER_ID 17620)</li><li><strong>Datos:</strong> 3.304 eventos del partido · 43 intentos de pase analizados · 43/43 con coordenadas completas de origen y destino</li><li><strong>Método:</strong> KDE sobre coordenadas de origen de los pases · campo StatsBomb 120 × 80</li></ul>
-<h4>Resultados espaciales y direccionales</h4>
-<ul><li>24 pases (55,8 %) se originan en el tercio medio; 14 (32,6 %) en el tercio final y 5 (11,6 %) en el tercio inicial.</li><li>38 de los 43 orígenes (88,4 %) aparecen en la franja Y inferior de la representación. Esta etiqueta es espacial y no se traduce aquí a carril izquierdo/derecho.</li><li>Con un umbral geométrico provisional de ±3 unidades en X: 18 desplazamientos progresivos (41,9 %), 21 regresivos (48,8 %) y 4 sin desplazamiento longitudinal significativo (9,3 %).</li><li>Longitud media de pase: 16,50 yardas; mediana: 15,32 yardas.</li></ul>
-<p class="method-note">La clasificación progresivo/regresivo expresa exclusivamente el desplazamiento geométrico longitudinal en el eje X. No equivale a la definición oficial de pase progresivo de StatsBomb ni demuestra progresión táctica. La KDE representa concentración de orígenes, no calidad, eficacia o influencia táctica.</p>
-<h4>Visualizaciones del estudio</h4>
+<div class="nested-accordions">
+<details class="nested-accordion"><summary>01 · Objetivo y pregunta de análisis</summary><div class="nested-content">
+<p>Explorar la distribución espacial de los pases de Marc Cucurella y describir desde qué zonas inicia sus acciones, cómo se desplazan longitudinalmente los envíos y qué diferencias aparecen entre tercios y periodos.</p>
+<div class="case-question"><strong>Pregunta de análisis</strong><span>¿En qué zonas del campo se originan los pases de Cucurella y qué patrones espaciales y direccionales aparecen en función de la profundidad y del periodo de juego?</span></div>
+<p class="method-note">El estudio describe los pases registrados. No representa todas las intervenciones del jugador ni permite, por sí solo, reconstruir su influencia global en el juego.</p>
+</div></details>
+<details class="nested-accordion"><summary>02 · Contexto y muestra</summary><div class="nested-content">
+<ul>
+<li><strong>Competición:</strong> Eurocopa 2024 · final.</li>
+<li><strong>Partido:</strong> España–Inglaterra · 14/07/2024 · MATCH_ID 3943043.</li>
+<li><strong>Jugador:</strong> Marc Cucurella Saseta · España · PLAYER_ID 17620.</li>
+<li><strong>Eventos del partido:</strong> 3.304.</li>
+<li><strong>Muestra:</strong> 43 intentos de pase de Cucurella.</li>
+<li><strong>Integridad espacial:</strong> 43/43 pases con coordenadas completas de origen y destino.</li>
+<li><strong>Distribución temporal:</strong> 26 pases en la primera parte y 17 en la segunda.</li>
+</ul>
+<p class="method-note">La unidad de análisis es el intento de pase. Los resultados se interpretan sobre una muestra de 43 registros y no deben generalizarse a otros partidos o al comportamiento habitual del jugador.</p>
+</div></details>
+<details class="nested-accordion"><summary>03 · Variables e indicadores</summary><div class="nested-content">
+<ul>
+<li><strong>Localización de origen:</strong> coordenadas X e Y del inicio de cada pase.</li>
+<li><strong>Localización de destino:</strong> coordenadas X e Y del final de cada pase.</li>
+<li><strong>Distribución espacial:</strong> tercio longitudinal y franja transversal de origen.</li>
+<li><strong>Dirección geométrica:</strong> desplazamiento longitudinal calculado mediante la diferencia entre X final e inicial.</li>
+<li><strong>Longitud del pase:</strong> distancia registrada en yardas.</li>
+<li><strong>Periodo:</strong> primera o segunda parte.</li>
+</ul>
+<p class="method-note">Las categorías progresivo, regresivo y neutro se utilizan aquí como etiquetas geométricas del desplazamiento en X. No equivalen a la definición oficial de pase progresivo de StatsBomb ni incorporan por sí solas la posición de rivales, líneas superadas o contexto de posesión.</p>
+</div></details>
+<details class="nested-accordion"><summary>04 · Metodología y procedimiento</summary><div class="nested-content">
+<ol>
+<li>Descarga de los eventos del partido desde StatsBomb Open Data.</li>
+<li>Identificación del jugador y selección de sus eventos de pase.</li>
+<li>Comprobación de coordenadas de origen y destino.</li>
+<li>Representación de la concentración de orígenes mediante KDE.</li>
+<li>Clasificación espacial de los orígenes por tercio longitudinal y franja transversal.</li>
+<li>Cálculo del desplazamiento longitudinal entre origen y destino, con umbral provisional de ±3 unidades en X.</li>
+<li>Comparación de la distribución direccional por tercio y periodo, junto con la longitud de los pases.</li>
+</ol>
+<p class="method-note">Sistema de coordenadas StatsBomb: 120 × 80 unidades. La longitud del pase se expresa en yardas. La KDE se aplica exclusivamente a las coordenadas de origen.</p>
+</div></details>
+<details class="nested-accordion"><summary>05 · Resultados y visualizaciones</summary><div class="nested-content">
+<h4>Distribución espacial</h4>
+<div class="audit-table-wrap"><table class="audit-table"><thead><tr><th>Indicador</th><th>Registros</th><th>Porcentaje</th></tr></thead><tbody>
+<tr><th>Tercio inicial</th><td>5</td><td>11,6 %</td></tr><tr><th>Tercio medio</th><td>24</td><td>55,8 %</td></tr><tr><th>Tercio final</th><td>14</td><td>32,6 %</td></tr><tr><th>Franja Y inferior</th><td>38</td><td>88,4 %</td></tr><tr><th>Franja Y media</th><td>5</td><td>11,6 %</td></tr><tr><th>Franja Y superior</th><td>0</td><td>0 %</td></tr>
+</tbody></table></div>
+<h4>Dirección geométrica</h4>
+<div class="audit-table-wrap"><table class="audit-table"><thead><tr><th>Clasificación</th><th>Pases</th><th>Porcentaje</th></tr></thead><tbody>
+<tr><th>Desplazamiento progresivo</th><td>18</td><td>41,9 %</td></tr><tr><th>Desplazamiento regresivo</th><td>21</td><td>48,8 %</td></tr><tr><th>Sin desplazamiento longitudinal significativo</th><td>4</td><td>9,3 %</td></tr>
+</tbody></table></div>
+<h4>Dirección por tercio</h4>
+<ul><li><strong>Tercio inicial (n=5):</strong> 3 progresivos (60 %) y 2 regresivos (40 %).</li><li><strong>Tercio medio (n=24):</strong> 13 progresivos (54,2 %), 7 regresivos (29,2 %) y 4 neutros (16,7 %).</li><li><strong>Tercio final (n=14):</strong> 2 progresivos (14,3 %) y 12 regresivos (85,7 %).</li></ul>
+<h4>Comparación por periodos</h4>
+<ul><li><strong>Primera parte (n=26):</strong> 11 progresivos (42,3 %), 14 regresivos (53,8 %) y 1 neutro (3,8 %).</li><li><strong>Segunda parte (n=17):</strong> 7 progresivos (41,2 %), 7 regresivos (41,2 %) y 3 neutros (17,6 %).</li><li><strong>Longitud media:</strong> 16,97 yardas en la primera parte y 15,79 en la segunda.</li></ul>
+<p><strong>Longitud global:</strong> media de 16,50 yardas y mediana de 15,32 yardas.</p>
 <div class="bd002-visual-grid">
 <figure class="data-figure"><img src="assets/images/BD-002_Cucurella_KDE_origen_pases.png" alt="Mapa de calor KDE de los orígenes de los pases de Marc Cucurella." loading="lazy"><figcaption>Concentración espacial KDE de los orígenes de pase.</figcaption></figure>
 <figure class="data-figure"><img src="assets/images/BD-002_Cucurella_distribucion_direccion_pases.png" alt="Distribución espacial de los pases de Cucurella clasificados por dirección longitudinal." loading="lazy"><figcaption>Distribución espacial según el desplazamiento longitudinal de cada pase.</figcaption></figure>
@@ -268,13 +320,51 @@
 <figure class="data-figure"><img src="assets/images/BD-002_Cucurella_direccion_por_periodo.png" alt="Comparación porcentual de direcciones de pase entre primera y segunda parte." loading="lazy"><figcaption>Distribución de direcciones por periodo de juego.</figcaption></figure>
 <figure class="data-figure"><img src="assets/images/BD-002_Cucurella_longitud_por_direccion_periodo.png" alt="Longitud media de pase según dirección geométrica y periodo." loading="lazy"><figcaption>Longitud media de pase por dirección geométrica y periodo (yardas).</figcaption></figure>
 </div>
-<h4>Lectura de los resultados</h4>
-<p>La muestra se concentra principalmente en el tercio medio (24/43; 55,8 %) y en la franja Y inferior de la representación (38/43; 88,4 %). La clasificación geométrica identifica más desplazamientos regresivos (21; 48,8 %) que progresivos (18; 41,9 %), con cuatro pases sin desplazamiento longitudinal significativo.</p>
-<p>La distribución por tercio presenta un contraste: en el tercio final, 12 de los 14 pases muestran desplazamiento regresivo (85,7 %), mientras que en el tercio medio predominan los desplazamientos progresivos (13/24; 54,2 %). Es una descripción del vector origen-destino, no una explicación de la intención ni de la función táctica de esos pases.</p>
-<p>Entre periodos, la proporción de desplazamientos progresivos se mantiene próxima (42,3 % en el primero y 41,2 % en el segundo), mientras que los pases sin desplazamiento longitudinal significativo aumentan del 3,8 % al 17,6 %. La longitud media pasa de 16,97 a 15,79 yardas. El tamaño de la muestra y la ausencia de contexto secuencial impiden atribuir estas diferencias a ajustes tácticos.</p>
-<p class="method-note">La muestra contiene 43 pases. Los porcentajes por tercio y periodo deben leerse junto con sus denominadores (n=5, 24 y 14; n=26 y 17). Las franjas Y se mantienen como referencias espaciales neutras; no se asignan a carriles tácticos. Las coordenadas StatsBomb 120 × 80 no son metros.</p>
-<p><a href="https://github.com/pildoradelmister/big-data-football-analysis/tree/main/02_MAPAS_DE_CALOR/BD-002_MAPA_CALOR_INDIVIDUAL/estudios/Estudio_01_Espana_Inglaterra_Eurocopa_2024_Marc_Cucurella" target="_blank" rel="noopener noreferrer">Consultar documentación técnica del Estudio 01 ↗</a></p>
-<p class="method-note">Estado: aplicación piloto documentada. La validación metodológica general y la prueba de reutilización con otros jugadores y partidos siguen pendientes.</p>
+</div></details>
+<details class="nested-accordion"><summary>06 · Interpretación futbolística e hipótesis de juego</summary><div class="nested-content">
+<h4>1. Zona de intervención y posible asimetría espacial</h4>
+<p>La muestra se concentra en el tercio medio (24/43; 55,8 %) y, en segundo lugar, en el tercio final (14/43; 32,6 %). Solo cinco pases se originan en el tercio inicial. Esta distribución sugiere que, en este partido, una parte importante de los pases registrados de Cucurella se inicia una vez que España ha superado la primera zona de construcción y se encuentra en sectores intermedios o avanzados. Como hipótesis, puede apuntar a una participación más frecuente en fases de progresión y continuidad en campo medio y campo rival que en el inicio más retrasado de la circulación.</p>
+<p>La concentración de 38 de los 43 orígenes en la franja Y inferior (88,4 %) añade un patrón de fuerte asimetría transversal en el mapa. Esto invita a revisar si Cucurella tendió a recibir o intervenir desde un corredor espacial recurrente, manteniendo una altura y una zona de partida relativamente estables. Sin embargo, la franja se conserva aquí como referencia geométrica: antes de traducirla a banda izquierda/derecha o a carril exterior/interior desde la perspectiva atacante, debe comprobarse la orientación transversal de la representación y contrastarse con vídeo. El mapa de orígenes tampoco permite distinguir por sí solo si esa concentración responde a amplitud, apoyo interior o movimientos de ajuste.</p>
+<h4>2. Diferencia funcional entre el tercio medio y el tercio final</h4>
+<p>El contraste más significativo aparece al cruzar la profundidad de origen con la dirección del pase. En el tercio medio, 13 de 24 envíos (54,2 %) presentan desplazamiento progresivo en X, frente a 7 regresivos (29,2 %). En el tercio final sucede lo contrario: 12 de 14 pases (85,7 %) muestran desplazamiento regresivo y solo dos progresivo.</p>
+<p>Este patrón es compatible con dos comportamientos complementarios. En zonas medias, Cucurella podría estar participando en conexiones que ayudan a avanzar metros y conectar con compañeros situados más cerca de la portería rival. En zonas avanzadas, el predominio de pases regresivos podría responder a apoyos por detrás del balón, descargas hacia un compañero de cara, conservación de la posesión o circulación para reorganizar el ataque después de alcanzar una zona alta. También podría reflejar la necesidad de encontrar una línea de pase segura cuando el avance directo queda bloqueado.</p>
+<p>La hipótesis de trabajo sería, por tanto, que su participación combina acciones de avance desde zonas intermedias con acciones de continuidad o descarga desde posiciones más adelantadas. No puede afirmarse todavía que esos pases regresivos sean apoyos interiores, devoluciones al lateral, cambios de orientación o pases atrás desde línea de fondo: para identificarlo hay que cruzar el destino, el receptor, la posición de los compañeros, la presión rival y la secuencia de posesión.</p>
+<h4>3. Qué puede sugerir el mapa de calor sobre los carriles</h4>
+<p>La KDE y el mapa de distribución espacial permiten localizar dónde se repiten los inicios de pase, pero no representan la trayectoria completa de Cucurella ni todos sus movimientos sin balón. La acumulación en una franja transversal y en los tercios medio y final puede orientar una revisión específica de los carriles de intervención: comprobar si recibe abierto para dar continuidad, si se aproxima al intervalo interior para conectar por dentro o si alterna ambas alturas y posiciones.</p>
+<p>En términos de análisis de vídeo, conviene comprobar especialmente si las recepciones se producen pegadas a la línea de banda o en el intervalo lateral-interior; si el jugador mantiene amplitud o se incorpora por dentro; y si los pases hacia atrás activan una circulación de tercer hombre, una devolución al apoyo o una nueva progresión por otro sector. Los datos actuales permiten formular estas preguntas, pero no resolverlas: la KDE señala concentración de orígenes, no el carril táctico exacto ni la intención de cada acción.</p>
+<h4>4. Evolución entre la primera y la segunda parte</h4>
+<p>La proporción de desplazamientos progresivos apenas cambia entre periodos: 42,3 % en la primera parte y 41,2 % en la segunda. En cambio, los pases neutros aumentan de 1/26 (3,8 %) a 3/17 (17,6 %), mientras que los regresivos descienden del 53,8 % al 41,2 %. La longitud media también baja ligeramente, de 16,97 a 15,79 yardas.</p>
+<p>La lectura prudente es que el patrón de avance longitudinal se mantiene estable, aunque en la segunda parte aparece una mayor proporción de pases con escaso desplazamiento en X y una longitud media algo menor. Esto podría ser compatible con más conexiones cortas, apoyos cercanos o circulación de continuidad, pero el tamaño de la muestra y la ausencia de contexto secuencial impiden atribuirlo a un cambio de rol, una instrucción del entrenador o una modificación del plan de partido.</p>
+<h4>5. Preguntas concretas para contrastar con vídeo</h4>
+<ul>
+<li>¿Los inicios de pase de la franja Y inferior corresponden a recepciones abiertas, posiciones interiores o a una combinación de ambas?</li>
+<li>¿En el tercio medio, los pases progresivos superan líneas de presión o simplemente desplazan el balón hacia delante?</li>
+<li>¿Los pases regresivos del tercio final son descargas para un compañero de cara, apoyos de seguridad o circulaciones para cambiar el sentido del ataque?</li>
+<li>¿Qué jugadores reciben esos pases y qué acción ejecutan inmediatamente después?</li>
+<li>¿La distribución espacial y la dirección de los envíos se mantienen cuando España ataca en transición, en ataque posicional o ante un bloque bajo?</li>
+</ul>
+<p class="method-note">Estas lecturas son hipótesis derivadas de la distribución observada. No constituyen conclusiones tácticas cerradas ni acreditan por sí solas progresión efectiva, superación de líneas, dominio territorial o eficacia ofensiva.</p>
+</div></details>
+<details class="nested-accordion"><summary>07 · Limitaciones y criterios de lectura</summary><div class="nested-content">
+<ul>
+<li>La muestra contiene 43 intentos de pase de un único partido; no representa todas las acciones ni permite generalizar el comportamiento del jugador.</li>
+<li>La KDE representa concentración de coordenadas de origen, no calidad, eficacia, influencia táctica ni zonas de recepción de forma directa.</li>
+<li>La clasificación progresivo/regresivo es geométrica y depende del umbral provisional de ±3 unidades en X; no equivale a la definición oficial de StatsBomb.</li>
+<li>Los pases regresivos no son necesariamente pases negativos: pueden cumplir funciones de apoyo, descarga, conservación o reorganización.</li>
+<li>La franja Y inferior/superior se mantiene como referencia espacial neutra y no se traduce automáticamente a carril izquierdo/derecho.</li>
+<li>Los porcentajes por tercio y periodo deben leerse junto con sus denominadores: n=5, n=24 y n=14; n=26 y n=17.</li>
+<li>Las coordenadas StatsBomb 120 × 80 no están expresadas en metros; la longitud del pase sí se expresa en yardas.</li>
+<li>Sin vídeo, destinos, receptores, presión rival y secuencia completa no puede identificarse la intención táctica de cada pase.</li>
+</ul>
+</div></details>
+<details class="nested-accordion"><summary>08 · Recursos técnicos y fuente</summary><div class="nested-content">
+<p>Notebook del estudio y visualizaciones completas disponibles en el repositorio técnico:</p>
+<p><a href="https://github.com/pildoradelmister/big-data-football-analysis/blob/main/02_MAPAS_DE_CALOR/BD-002_MAPA_CALOR_INDIVIDUAL/estudios/Estudio_01_Espana_Inglaterra_Eurocopa_2024_Marc_Cucurella/notebooks/BD-002_MAPA_CALOR_INDIVIDUAL_PASES_ESPANA_INGLATERRA_EURO2024_CUCURELLA.ipynb" target="_blank" rel="noopener noreferrer">Consultar notebook técnico del Estudio 01 ↗</a></p>
+<p><strong>Fuente de datos:</strong> StatsBomb Open Data.</p>
+<p><a href="https://github.com/statsbomb/open-data" target="_blank" rel="noopener noreferrer">Consultar repositorio oficial de StatsBomb Open Data ↗</a></p>
+<p class="method-note">Estado: estudio piloto publicado. La validación metodológica general y la prueba de reutilización con otros jugadores y partidos siguen pendientes.</p>
+</div></details>
+</div>
 </div></details>
           </div></div>
         </details>
