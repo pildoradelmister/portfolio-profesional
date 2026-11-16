@@ -296,7 +296,10 @@
 <li>Cálculo del desplazamiento longitudinal entre origen y destino, con umbral provisional de ±3 unidades en X.</li>
 <li>Comparación de la distribución direccional por tercio y periodo, junto con la longitud de los pases.</li>
 </ol>
-<p class="method-note">Sistema de coordenadas StatsBomb: 120 × 80 unidades. La longitud del pase se expresa en yardas. La KDE se aplica exclusivamente a las coordenadas de origen.</p>
+<p class="method-note">Sistema de coordenadas StatsBomb: 120 × 80 unidades (no metros). El eje X representa la dimensión longitudinal (0–120) y el eje Y la dimensión transversal (0–80). El origen (0, 0) se sitúa en la esquina superior izquierda; en la representación de mplsoccer con <code>pitch_type="statsbomb"</code>, los valores de Y aumentan de arriba hacia abajo.</p>
+<h4>Lectura de los ejes y franjas transversales</h4>
+<p>Para describir la distribución transversal se utilizan intervalos numéricos de Y: <strong>Y = 0–26,67</strong>, <strong>Y = 26,67–53,33</strong> y <strong>Y = 53,33–80</strong>. El primer intervalo corresponde a la zona superior de la representación y el último a la zona inferior. Estas etiquetas describen únicamente la posición en el sistema de coordenadas; no identifican por sí mismas carriles tácticos ni el lado izquierdo o derecho del equipo. Esa correspondencia requiere comprobar la orientación del campo y la perspectiva de ataque.</p>
+<p class="method-note">La longitud del pase se expresa en yardas. La KDE se aplica exclusivamente a las coordenadas de origen. Las coordenadas StatsBomb son unidades normalizadas del campo, no metros.</p>
 </div></details>
 <details class="nested-accordion"><summary>05 · Resultados y visualizaciones</summary><div class="nested-content">
 <h4>Distribución espacial</h4>
